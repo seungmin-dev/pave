@@ -1,0 +1,70 @@
+import Link from "next/link";
+import { useRouter } from "next/router";
+import { cls } from "../library/unil";
+
+interface ILayoutProps {
+  title: string;
+  children: React.ReactNode;
+}
+
+const MENU = [
+  {
+    name: "home",
+    page: "/",
+    icon: "M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25",
+  },
+  {
+    name: "new",
+    page: "/new",
+    icon: "M9 9l10.5-3m0 6.553v3.75a2.25 2.25 0 01-1.632 2.163l-1.32.377a1.803 1.803 0 11-.99-3.467l2.31-.66a2.25 2.25 0 001.632-2.163zm0 0V2.25L9 5.25v10.303m0 0v3.75a2.25 2.25 0 01-1.632 2.163l-1.32.377a1.803 1.803 0 01-.99-3.467l2.31-.66A2.25 2.25 0 009 15.553z",
+  },
+  {
+    name: "search",
+    page: "/search",
+    icon: "M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z",
+  },
+  {
+    name: "me",
+    page: "/me",
+    icon: "M17.982 18.725A7.488 7.488 0 0012 15.75a7.488 7.488 0 00-5.982 2.975m11.963 0a9 9 0 10-11.963 0m11.963 0A8.966 8.966 0 0112 21a8.966 8.966 0 01-5.982-2.275M15 9.75a3 3 0 11-6 0 3 3 0 016 0z",
+  },
+];
+export const Layout = (props: ILayoutProps): JSX.Element => {
+  const router = useRouter();
+
+  return (
+    <div className="w-full max-w-[600px] h-screen m-auto flex flex-col">
+      <div className="w-full flex-grow">{props.children}</div>
+      <div className="w-full h-20 flex justify-between border-t-[1px] border-black">
+        {MENU.map((el, i) => (
+          <Link
+            key={i}
+            href={el.page}
+            className={cls(
+              "w-full h-full flex flex-col items-center justify-center cursor-pointer ",
+              router.pathname === el.page ? "text-[#ffd014]" : "text-black"
+            )}
+          >
+            <div className="w-8 h-10">
+              <svg
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+                aria-hidden="true"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d={el.icon}
+                ></path>
+              </svg>
+            </div>
+            <span className="text-sm">{el.name}</span>
+          </Link>
+        ))}
+      </div>
+    </div>
+  );
+};
