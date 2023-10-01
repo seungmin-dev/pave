@@ -9,8 +9,8 @@ export default function MePage(): JSX.Element {
   };
   return (
     <Layout title="collection">
-      <div className="w-full py-6 flex flex-col">
-        <div className="w-full h-20 mt-6 flex justify-around mb-6 cursor-pointer items-center">
+      <div className="w-full flex flex-col">
+        <div className="w-full h-20 flex justify-around mb-6 cursor-pointer items-center">
           <div
             className={cls(
               "w-1/2 h-full py-4 border-b-2 text-center flex items-center justify-center",

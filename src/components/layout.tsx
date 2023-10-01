@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { cls } from "../library/unil";
+import { useState } from "react";
 
 interface ILayoutProps {
   title: string;
@@ -36,11 +37,46 @@ const MENU = [
 ];
 export const Layout = (props: ILayoutProps): JSX.Element => {
   const router = useRouter();
-
+  const [menu, setMenu] = useState(false);
+  const [dark, setDark] = useState(false);
+  const onClickMenu = () => {
+    setMenu((prev) => !prev);
+  };
+  const onClickDark = () => {
+    setDark((prev) => !prev);
+  };
   return (
-    <div className="w-full max-w-[600px] h-screen m-auto flex flex-col">
+    <div className="w-full max-w-[600px] h-screen overflow-hidden m-auto flex flex-col relative">
+      {menu ? (
+        <div
+          onClick={onClickMenu}
+          className={`cursor-pointer absolute w-full h-full bg-zinc-950 transition-opacity duration-500 ${
+            menu ? "opacity-50" : "opacity-0"
+          }`}
+        ></div>
+      ) : null}
+      <div className="w-full h-20 border-b-[1px] border-black flex justify-between items-center px-3">
+        <h1 className="text-2xl font-bold">PAVE</h1>
+        <div onClick={onClickMenu} className="cursor-pointer">
+          <svg
+            className="w-8"
+            fill="black"
+            stroke="black"
+            strokeWidth="1.5"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+            aria-hidden="true"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
+            ></path>
+          </svg>
+        </div>
+      </div>
       <div className="w-full h-screen overflow-y-scroll">{props.children}</div>
-      <div className="w-full h-20 flex justify-between border-t-[1px] border-black">
+      <div className="w-full h-24 flex justify-between border-t-[1px] border-black">
         {MENU.map((el, i) => (
           <Link
             key={i}
@@ -73,6 +109,32 @@ export const Layout = (props: ILayoutProps): JSX.Element => {
           </Link>
         ))}
       </div>
+      {menu ? (
+        <div className="absolute bottom-0 w-full h-1/6 bg-white px-10 py-32 rounded-t-3xl">
+          <ul>
+            <li className="p-3 flex justify-between border-b-[1px] border-zinc-200">
+              <span>Dark Mode</span>
+              <div onClick={onClickDark} className="cursor-pointer">
+                <svg
+                  className="w-8"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth={1.5}
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                  aria-hidden="true"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z"
+                  />
+                </svg>
+              </div>
+            </li>
+          </ul>
+        </div>
+      ) : null}
     </div>
   );
 };

@@ -11,9 +11,11 @@ export default function SearchPage(): JSX.Element {
   };
   return (
     <Layout title="search">
-      <div className="w-full py-6 flex flex-col">
-        <Input type="text" placeholder="feel the pave now -" />
-        <div className="w-full mt-6">
+      <div className="w-full flex flex-col">
+        <div className="px-3">
+          <Input type="text" placeholder="feel the pave now -" />
+        </div>
+        <div className="w-full">
           <div className="w-full h-20 flex justify-around mb-6 cursor-pointer">
             <div
               onClick={onClickTap(true)}
