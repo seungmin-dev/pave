@@ -3,8 +3,8 @@ import Link from "next/link";
 
 export default function LoginPage(): JSX.Element {
   return (
-    <div className="w-full max-w-[600px] h-screen m-auto ">
-      <div className="flex flex-col gap-4 mt-56">
+    <div className="w-full max-w-[600px] h-screen m-auto pt-56 px-3">
+      <div className="flex flex-col gap-4">
         <h1 className="text-center font-extrabold text-5xl mb-8">PAVE</h1>
         <p className="text-center font-bold text-2xl mb-6">Log In</p>
         <Input type="text" placeholder="name" />

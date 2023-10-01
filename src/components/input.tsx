@@ -6,7 +6,7 @@ interface InputProps {
 export const Input = ({ type, placeholder }: InputProps): JSX.Element => {
   return (
     <input
-      className="w-full px-4 py-2 my-4 border-[1px] border-slate-300 rounded-xl"
+      className="w-full px-4 py-2 my-4 border-[1px] border-slate-300 rounded-xl dark:bg-zinc-200"
       type={type}
       placeholder={placeholder}
     />

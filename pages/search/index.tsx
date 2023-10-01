@@ -23,7 +23,7 @@ export default function SearchPage(): JSX.Element {
                 "w-1/2 h-full py-4 text-center border-b-2 flex items-center justify-center",
                 active
                   ? "border-[#ffd014] text-[#ffd014]"
-                  : "border-zinc-200 text-black"
+                  : "border-zinc-200 dark:border-zinc-500 text-black dark:text-zinc-500"
               )}
             >
               <span>실시간 페이빙 음악</span>
@@ -34,7 +34,7 @@ export default function SearchPage(): JSX.Element {
                 "w-1/2 h-full py-4 text-center border-b-2 flex items-center justify-center",
                 !active
                   ? "border-[#ffd014] text-[#ffd014]"
-                  : "border-zinc-200 text-black"
+                  : "border-zinc-200 dark:border-zinc-500 text-black dark:text-zinc-500"
               )}
             >
               <span>최근 페이빙</span>
@@ -46,7 +46,7 @@ export default function SearchPage(): JSX.Element {
                 {new Array(10).fill(1).map((el, i) => (
                   <li
                     key={i}
-                    className="w-full text-lg py-4 flex gap-3 justify-center border-b-[1px] border-zinc-200 hover:text-[#ffd014] "
+                    className="w-full text-lg py-4 flex gap-3 justify-center dark:text-white border-b-[1px] border-zinc-200 dark:border-zinc-500 hover:text-[#ffd014] dark:hover:text-[#ffd014]"
                   >
                     <span>{i + 1}. </span>
                     <span>이 노래</span>
