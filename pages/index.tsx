@@ -1,10 +1,13 @@
 import { search } from "@/src/axios";
 import { Item } from "@/src/components/item";
 import { Layout } from "@/src/components/layout";
+import useUser from "@/src/library/client/useUser";
 import { useEffect } from "react";
 import useSWR from "swr";
 
 export default function Home() {
+  const { user, isLoading } = useUser();
+
   const { data } = useSWR("/api/spotify/spotifyToken");
   const access_token = data?.data.access_token;
 
