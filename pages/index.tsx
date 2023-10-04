@@ -5,7 +5,7 @@ import { useEffect } from "react";
 import useSWR from "swr";
 
 export default function Home() {
-  const { data } = useSWR("/api/token");
+  const { data } = useSWR("/api/spotify/spotifyToken");
   const access_token = data?.data.access_token;
 
   const getData = async () => {

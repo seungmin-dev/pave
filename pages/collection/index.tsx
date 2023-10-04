@@ -1,5 +1,5 @@
 import { Layout } from "@/src/components/layout";
-import { cls } from "@/src/library/unil";
+import { cls } from "@/src/library/client/unil";
 import { useState } from "react";
 
 export default function MePage(): JSX.Element {
