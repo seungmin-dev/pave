@@ -1,3 +1,4 @@
+import { Button } from "@/src/components/button";
 import { Input } from "@/src/components/input";
 import useMutation from "@/src/library/client/useMutation";
 import Link from "next/link";
@@ -68,12 +69,7 @@ export default function SignInPage(): JSX.Element {
               placeholder="password"
               required
             />
-            <button
-              className="w-full px-4 py-3 my-4 bg-black tracking-wider text-white text-center rounded-xl font-bold cursor-pointer hover:bg-slate-900"
-              type="submit"
-            >
-              {loading ? "Loading..." : "Register"}
-            </button>
+            <Button type="submit">{loading ? "Loading..." : "Register"}</Button>
           </form>
         ) : (
           <form onSubmit={tokenHandleSubmit(onValidToken)}>
@@ -83,12 +79,9 @@ export default function SignInPage(): JSX.Element {
               placeholder="token"
               required
             />
-            <button
-              className="w-full px-4 py-3 my-4 bg-black tracking-wider text-white text-center rounded-xl font-bold cursor-pointer hover:bg-slate-900"
-              type="submit"
-            >
+            <Button type="submit">
               {tokenLoading ? "Verifying..." : "Verify"}
-            </button>
+            </Button>
           </form>
         )}
         <span className="text-center">

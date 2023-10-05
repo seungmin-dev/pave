@@ -1,3 +1,4 @@
+import { Button } from "@/src/components/button";
 import { Input } from "@/src/components/input";
 import useMutation from "@/src/library/client/useMutation";
 import Link from "next/link";
@@ -35,12 +36,7 @@ export default function LoginPage(): JSX.Element {
             type="password"
             placeholder="password"
           />
-          <button
-            className="w-full px-4 py-3 my-4 bg-black tracking-wider text-white text-center rounded-xl font-bold cursor-pointer hover:bg-slate-900"
-            type="submit"
-          >
-            {loading ? "Loading..." : "Login"}
-          </button>
+          <Button type="submit">{loading ? "Loading..." : "Login"}</Button>
         </form>
         <span className="text-center">
           Doesn&apos;t have an account yet?{" "}
