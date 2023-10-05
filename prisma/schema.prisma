@@ -35,10 +35,12 @@ model Token {
 }
 
 model Post {
-  id        Int      @id @default(autoincrement())
-  photo     String
-  music     String
-  createdAt DateTime @default(now())
-  User      User?    @relation(fields: [userId], references: [id])
-  userId    Int?
+  id         Int      @id @default(autoincrement())
+  photoUrl   String
+  songName   String
+  songArtist String
+  songUrl    String
+  createdAt  DateTime @default(now())
+  user       User?    @relation(fields: [userId], references: [id])
+  userId     Int?
 }
