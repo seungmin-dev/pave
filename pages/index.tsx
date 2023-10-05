@@ -1,15 +1,14 @@
 import { search } from "@/src/axios";
-import { Item } from "@/src/components/item";
+import { Item, ItemProps } from "@/src/components/item";
 import { Layout } from "@/src/components/layout";
-import useUser from "@/src/library/client/useUser";
 import { useEffect } from "react";
 import useSWR from "swr";
+import { v4 as uuidv4 } from "uuid";
 
 export default function Home() {
-  const { user, isLoading } = useUser();
-
-  const { data } = useSWR("/api/spotify/spotifyToken");
-  const access_token = data?.data.access_token;
+  const { data: token } = useSWR("/api/spotify/spotifyToken");
+  const { data } = useSWR("api/post/fetch");
+  const access_token = token?.data.access_token;
 
   const getData = async () => {
     const {
@@ -25,8 +24,8 @@ export default function Home() {
   return (
     <Layout title="home">
       <div className="py-6">
-        {new Array(10).fill(1).map((el, i) => (
-          <Item key={i} />
+        {data?.posts.map((el: ItemProps) => (
+          <Item key={uuidv4()} {...el} />
         ))}
       </div>
     </Layout>

@@ -1,14 +1,22 @@
+import { ItemProps } from "@/src/components/item";
 import { Layout } from "@/src/components/layout";
+import useUser from "@/src/library/client/useUser";
 import Link from "next/link";
+import useSWR from "swr";
+import { v4 as uuidv4 } from "uuid";
 
 export default function MePage(): JSX.Element {
+  const { user } = useUser();
+  const { data } = useSWR("/api/post/fetch");
   return (
     <Layout title="me">
       <div className="w-full">
         <div className="pt-16 w-full flex flex-col items-center space-y-5 mb-10">
-          {/* <img /> */}
+          {/* <img src={user.avatar} /> */}
           <div className="w-40 h-40 rounded-full bg-zinc-100" />
-          <span className="text-2xl font-semibold dark:text-white">닉네임</span>
+          <span className="text-2xl font-semibold dark:text-white">
+            {user.name}
+          </span>
         </div>
         <div className="w-full mb-6">
           <ul className="w-full h-16 grid grid-cols-3 justify-around">
@@ -29,11 +37,10 @@ export default function MePage(): JSX.Element {
           </ul>
         </div>
         <div className="w-full h-auto grid grid-rows-3 grid-cols-3 gap-1 overflow-y-scroll">
-          {new Array(24).fill(1).map((el, i) => (
-            // <Link key={i} href={`/${userId}/${postId}`}>
-            <Link key={i} href={`/me/post`}>
-              <div className="cursor-pointer">
-                <div className="w-full h-48 bg-zinc-200" />
+          {data?.posts.map((el: ItemProps) => (
+            <Link key={uuidv4()} href={`/me/post/${el.id}`}>
+              <div className="cursor-pointer overflow-hidden aspect-square flex justify-center items-center">
+                <img src={el.photoUrl} />
               </div>
             </Link>
           ))}
