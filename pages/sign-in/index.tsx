@@ -33,7 +33,7 @@ export default function SignInPage(): JSX.Element {
     reset();
   };
   const onValidToken = (data: TokenForm) => {
-    data.kind = "login";
+    data.kind = "signin";
     verify(data);
   };
 
